@@ -1,20 +1,19 @@
 # Memory Game Project
 
-## Table of Contents
+## Overview 
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+Memory game also known as (concentration) is a card game in which all of the cards are laid face down and two cards are flipped face up over each turn.
+The object of the game is to turn over pairs of matching cards.
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+* Turn over any two cards.
+* If the two cards match, they'll stay turned over.
+* If they don't match, they'll turn back over.
+* Remember what was on each card and where it was.
+* Watch and rememberwhere each card was.
+* The game is over when all the cards have been matched.
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Note
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+this project is a part of the udacity Front-End web development Nanodegree program.

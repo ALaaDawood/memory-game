@@ -3,7 +3,7 @@
  */
 const cardsList = document.querySelector('.deck');
 const cards = document.querySelectorAll('.card');
-const cardsArray = Array.from(cards); 
+const cardsArray = Array.from(cards);
 let openCards = new Array();
 const movesSpan = document.querySelector('.moves');
 let moves = 0;
@@ -37,15 +37,14 @@ for (let i = 0; i < cardsArray.length; i++) {
 cardsList.addEventListener('click', cardClicked);
 
 function cardClicked(e) {
-    
+
     const clickedCard = e.target;
-    if (clickedCard.classList.contains('card') && !clickedCard.classList.contains('show') )
-    {
+    if (clickedCard.classList.contains('card') && !clickedCard.classList.contains('show')) {
         calcMoves();
         clickedCard.classList.add('show');
         addToOpenCards(clickedCard);
     }
-   
+
 
 }
 let counter = 1;
@@ -55,7 +54,7 @@ function checkStatus() {
     for (let card of cards) {
         if (card.classList.contains('match')) {
             counter++;
-            console.log("counter = "+counter);
+            console.log("counter = " + counter);
             break;
         }
     }
@@ -101,19 +100,16 @@ function addToOpenCards(clickedCard) {
 
     if (openCards.length === 2) {
 
-        if (openCards[0].innerHTML == openCards[1].innerHTML)
-        {
+        if (openCards[0].innerHTML == openCards[1].innerHTML) {
             foundMatch(openCards);
-        }
-        else {
+        } else {
             notMatched(openCards);
         }
     }
 
 }
 
-function foundMatch(array)
-{
+function foundMatch(array) {
     setTimeout(function () {
         array[0].classList.add('match');
         array[1].classList.add('match');
@@ -123,13 +119,12 @@ function foundMatch(array)
     checkStatus();
 }
 
-function notMatched(array)
-{
+function notMatched(array) {
     array[0].classList.add('notMatched');
     array[1].classList.add('notMatched');
     setTimeout(function () {
         for (let i = 0; i < array.length; i++) {
-           
+
             array[i].classList.remove('show');
             array[i].classList.remove('open');
         }
@@ -139,7 +134,7 @@ function notMatched(array)
         array.pop();
 
     }, 500);
-    
+
 }
 
 function calcMoves() {
@@ -149,12 +144,11 @@ function calcMoves() {
 }
 
 function updateStars() {
-    if (moves > 15 && moves<25)
-    {
+    if (moves > 15 && moves < 25) {
         starsList[2].setAttribute('class', 'fa fa-star-o');
         stars = 2;
     }
-    if (moves >= 25 && moves <35 ) {
+    if (moves >= 25 && moves < 35) {
         starsList[1].setAttribute('class', 'fa fa-star-o');
         stars = 1;
     }
@@ -176,7 +170,7 @@ function timer() {
             alert("Time's up!");
             clearInterval(timerId);
             window.location.reload();
-            
+
         } else {
             timerspan.innerText = min + " : " + sec;
 
@@ -187,7 +181,8 @@ function timer() {
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    var currentIndex = array.length,
+        temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);

@@ -62,11 +62,14 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);   
 }
+    .deck .card:active {
+        -webkit-transform: rotateY(40deg);
+        animation: 2s;
+    }
 
 .deck .card.open {
-    transform: rotateY(0);
     background: #02b3e4;
     cursor: default;
 }
@@ -80,16 +83,19 @@ h1 {
     background: #02ccba;
     font-size: 33px;
 }
-
-/*
+.deck .card.open.show.notMatched {
+    cursor: default;
+    background-color: tomato;
+}
+   
+    /*
  * Styles for the Score Panel
  */
-
-.score-panel {
-    text-align: left;
-    width: 345px;
-    margin-bottom: 10px;
-}
+    .score-panel {
+        text-align: left;
+        width: 345px;
+        margin-bottom: 10px;
+    }
 
 .score-panel .stars {
     margin: 0;
@@ -106,4 +112,19 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+.scoreContainer {
+    width: 100%;
+    text-align: center;
+    margin-top : 200px;
+}
+.btnSuccess {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }

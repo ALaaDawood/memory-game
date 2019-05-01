@@ -7,9 +7,13 @@ const cardsArray = Array.from(cards);
 let openCards = new Array();
 const movesSpan = document.querySelector('.moves');
 let moves = 0;
+let stars = 3;
 const restartBtn = document.querySelector('.restart');
 const starsList = document.querySelectorAll('.fa-star');
+starsListArr = Array.from(starsList);
 const container = document.querySelector('.container');
+const body = document.querySelector('body');
+timerspan = document.querySelector('.timer');
 
 /*
  * Display the cards on the page
@@ -19,22 +23,23 @@ const container = document.querySelector('.container');
  */
 restartBtn.addEventListener('click', function () {
     window.location.reload();
+    timer();
 });
 const shuffledCards = shuffle(cardsArray);
 
 for (let i = 0; i < cardsArray.length; i++) {
 
     cardsList.appendChild(shuffledCards[i]);
-    
+    timer();
 }
 
 
 cardsList.addEventListener('click', cardClicked);
 
 function cardClicked(e) {
-
+    
     const clickedCard = e.target;
-    if (clickedCard.classList.contains('card'))
+    if (clickedCard.classList.contains('card') && !clickedCard.classList.contains('show') )
     {
         calcMoves();
         clickedCard.classList.add('show');
@@ -44,6 +49,7 @@ function cardClicked(e) {
 
 }
 let counter = 1;
+
 function checkStatus() {
 
     for (let card of cards) {
@@ -57,10 +63,36 @@ function checkStatus() {
         displayScroe();
     }
 }
+
 function displayScroe() {
     console.log("you won!");
-    container.remove();
-    document.createElement('p')
+    //clearInterval(timerId);
+    container.parentNode.removeChild(container);
+    /****************Create Scroe Board Container********************/
+    const scoreContainer = document.createElement('div');
+    scoreContainer.setAttribute('class', 'scoreContainer');
+    body.appendChild(scoreContainer);
+
+    const checkImg = document.createElement('img');
+    checkImg.setAttribute('src', './img/check-mark.gif');
+
+    const congrats = document.createElement('h1');
+    congrats.innerText = "Congratulations! YOU Won!";
+
+    const playerStats = document.createElement('p');
+    playerStats.innerText = "With " + moves + " Moves and " + stars + " Stars ";
+
+    const againBtn = document.createElement('button');
+    againBtn.innerText = "Play Again";
+    againBtn.setAttribute('class', 'btnSuccess');
+    againBtn.addEventListener('click', function () {
+        window.location.reload();
+    });
+
+    scoreContainer.appendChild(checkImg);
+    scoreContainer.appendChild(congrats);
+    scoreContainer.appendChild(playerStats);
+    scoreContainer.appendChild(againBtn);
 }
 
 function addToOpenCards(clickedCard) {
@@ -90,24 +122,67 @@ function foundMatch(array)
     }, 500);
     checkStatus();
 }
+
 function notMatched(array)
 {
-    //array[0].style.backgroundColor = "tomato";
-    //array[1].style.backgroundColor = "tomato";
+    array[0].classList.add('notMatched');
+    array[1].classList.add('notMatched');
     setTimeout(function () {
         for (let i = 0; i < array.length; i++) {
            
             array[i].classList.remove('show');
             array[i].classList.remove('open');
         }
+        array[0].classList.remove('notMatched');
+        array[1].classList.remove('notMatched');
         array.pop();
         array.pop();
+
     }, 500);
     
 }
+
 function calcMoves() {
     moves++;
     movesSpan.innerText = moves;
+    updateStars();
+}
+
+function updateStars() {
+    if (moves > 15 && moves<25)
+    {
+        starsList[2].setAttribute('class', 'fa fa-star-o');
+        stars = 2;
+    }
+    if (moves >= 25 && moves <35 ) {
+        starsList[1].setAttribute('class', 'fa fa-star-o');
+        stars = 1;
+    }
+    if (moves >= 35) {
+        starsList[0].setAttribute('class', 'fa fa-star-o');
+        stars = 0;
+    }
+
+}
+
+function timer() {
+    var countdown = 900000;
+    var timerId = setInterval(function () {
+        countdown -= 1000;
+        var min = Math.floor(countdown / (60 * 1000));
+        var sec = Math.floor((countdown - (min * 60 * 1000)) / 1000);
+
+        if (countdown <= 0) {
+            alert("Time's up!");
+            clearInterval(timerId);
+            window.location.reload();
+            
+        } else {
+            timerspan.innerText = min + " : " + sec;
+
+        }
+
+    }, 1000);
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976

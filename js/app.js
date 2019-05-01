@@ -23,7 +23,6 @@ timerspan = document.querySelector('.timer');
  */
 restartBtn.addEventListener('click', function () {
     window.location.reload();
-    timer();
 });
 const shuffledCards = shuffle(cardsArray);
 
@@ -59,11 +58,12 @@ function checkStatus() {
         }
     }
     if (counter == 8) {
-        displayScroe();
+        saveScore();
+        displayScore();
     }
 }
 
-function displayScroe() {
+function displayScore() {
     console.log("you won!");
     //clearInterval(timerId);
     container.parentNode.removeChild(container);
@@ -88,10 +88,26 @@ function displayScroe() {
         window.location.reload();
     });
 
+    const leaderBoard = document.createElement('h4');
+    leaderBoard.innerText = "Highest Score: " + localStorage.getItem('highScore') + " Stars";
+
     scoreContainer.appendChild(checkImg);
     scoreContainer.appendChild(congrats);
     scoreContainer.appendChild(playerStats);
+    scoreContainer.appendChild(leaderBoard);
     scoreContainer.appendChild(againBtn);
+}
+
+function saveScore() {
+    if (localStorage.getItem('highScore') != null) {
+        prevScore = localStorage.getItem('highScore');
+        if (stars > prevScore) {
+            localStorage.setItem("highScore", stars);
+        }
+    } else {
+        localStorage.setItem("highScore", stars);
+    }
+
 }
 
 function addToOpenCards(clickedCard) {
@@ -145,18 +161,21 @@ function calcMoves() {
 
 function updateStars() {
     if (moves > 15 && moves < 25) {
+        starsList[4].setAttribute('class', 'fa fa-star-o');
+        stars = 4;
+    }
+    if (moves >= 25 && moves < 35) {
+        starsList[3].setAttribute('class', 'fa fa-star-o');
+        stars = 3;
+    }
+    if (moves >= 35 && moves < 45) {
         starsList[2].setAttribute('class', 'fa fa-star-o');
         stars = 2;
     }
-    if (moves >= 25 && moves < 35) {
+    if (moves >= 45) {
         starsList[1].setAttribute('class', 'fa fa-star-o');
         stars = 1;
     }
-    if (moves >= 35) {
-        starsList[0].setAttribute('class', 'fa fa-star-o');
-        stars = 0;
-    }
-
 }
 
 function timer() {

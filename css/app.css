@@ -17,7 +17,8 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+    background: #ffffff url('../img/geometry2.png');
+    /* Background pattern from Subtle Patterns */
     font-family: 'Coda', cursive;
 }
 
@@ -32,6 +33,7 @@ h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
 }
+
 
 /*
  * Styles for the deck of cards
@@ -51,73 +53,79 @@ h1 {
     margin: 0 0 3em;
 }
 
-.deck .card {
-    height: 125px;
-    width: 125px;
-    background: #2e3d49;
-    font-size: 0;
-    color: #ffffff;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);   
-}
-    .deck .card:active {
-        -webkit-transform: rotateY(40deg);
-        animation: 2s;
+    .deck .card {
+        height: 125px;
+        width: 125px;
+        background: #2e3d49;
+        font-size: 0;
+        color: #ffffff;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
     }
 
-.deck .card.open {
-    background: #02b3e4;
-    cursor: default;
-}
+        .deck .card:active {
+            -webkit-transform: rotateY(40deg);
+            animation: 2s;
+        }
 
-.deck .card.show {
-    font-size: 33px;
-}
+        .deck .card.open {
+            background: #02b3e4;
+            cursor: default;
+        }
 
-.deck .card.match {
-    cursor: default;
-    background: #02ccba;
-    font-size: 33px;
-}
-.deck .card.open.show.notMatched {
-    cursor: default;
-    background-color: tomato;
-}
-   
-    /*
+        .deck .card.show {
+            font-size: 33px;
+        }
+
+        .deck .card.match {
+            cursor: default;
+            background: #02ccba;
+            font-size: 33px;
+        }
+
+        .deck .card.open.show.notMatched {
+            cursor: default;
+            background-color: tomato;
+        }
+
+
+/*
  * Styles for the Score Panel
  */
-    .score-panel {
-        text-align: left;
-        width: 345px;
-        margin-bottom: 10px;
+
+.score-panel {
+    text-align: left;
+    width: 345px;
+    margin-bottom: 10px;
+}
+
+    .score-panel .stars {
+        margin: 0;
+        padding: 0;
+        display: inline-block;
+        margin: 0 5px 0 0;
     }
 
-.score-panel .stars {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    margin: 0 5px 0 0;
-}
+        .score-panel .stars li {
+            list-style: none;
+            display: inline-block;
+        }
 
-.score-panel .stars li {
-    list-style: none;
-    display: inline-block;
-}
+    .score-panel .restart {
+        float: right;
+        cursor: pointer;
+    }
 
-.score-panel .restart {
-    float: right;
-    cursor: pointer;
-}
 .scoreContainer {
     width: 100%;
     text-align: center;
-    margin-top : 200px;
+    margin-top: 200px;
 }
+
 .btnSuccess {
     background-color: #008CBA;
     border: none;

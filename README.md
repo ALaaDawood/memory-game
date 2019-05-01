@@ -11,7 +11,6 @@ The object of the game is to turn over pairs of matching cards.
 * If the two cards match, they'll stay turned over.
 * If they don't match, they'll turn back over.
 * Remember what was on each card and where it was.
-* Watch and rememberwhere each card was.
 * The game is over when all the cards have been matched.
 
 ## Note

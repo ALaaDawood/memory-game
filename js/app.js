@@ -15,26 +15,25 @@ const container = document.querySelector('.container');
 const body = document.querySelector('body');
 timerspan = document.querySelector('.timer');
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+
 restartBtn.addEventListener('click', function () {
     window.location.reload();
 });
+
+//************ shuffle the list of cards using the provided "shuffle" method below********//
 const shuffledCards = shuffle(cardsArray);
 
+//************ Adding the shuffled cards to the html ****************//
 for (let i = 0; i < cardsArray.length; i++) {
 
     cardsList.appendChild(shuffledCards[i]);
     timer();
 }
 
-
+//************ adding functionality when the card is clicked ****************//
 cardsList.addEventListener('click', cardClicked);
 
+//**********function to take the clicked card and adds class to it*************//
 function cardClicked(e) {
 
     const clickedCard = e.target;
@@ -43,11 +42,10 @@ function cardClicked(e) {
         clickedCard.classList.add('show');
         addToOpenCards(clickedCard);
     }
-
-
 }
 let counter = 1;
 
+//**********************check if all the cards are matched****************//
 function checkStatus() {
 
     for (let card of cards) {
@@ -63,6 +61,7 @@ function checkStatus() {
     }
 }
 
+//******************** end game and display the score **********************//
 function displayScore() {
     console.log("you won!");
     //clearInterval(timerId);
@@ -81,6 +80,9 @@ function displayScore() {
     const playerStats = document.createElement('p');
     playerStats.innerText = "With " + moves + " Moves and " + stars + " Stars ";
 
+    currentTime = timerspan.innerText.split(':');
+    console.log(currentTime);
+
     const againBtn = document.createElement('button');
     againBtn.innerText = "Play Again";
     againBtn.setAttribute('class', 'btnSuccess');
@@ -98,6 +100,7 @@ function displayScore() {
     scoreContainer.appendChild(againBtn);
 }
 
+//*********************save the player's score in local storage to compare high scores*********//
 function saveScore() {
     if (localStorage.getItem('highScore') != null) {
         prevScore = localStorage.getItem('highScore');
@@ -110,6 +113,7 @@ function saveScore() {
 
 }
 
+//********************make an array of the two oppened cards to check if they match**********//
 function addToOpenCards(clickedCard) {
     clickedCard.classList.add('open');
     openCards.push(clickedCard);
@@ -124,7 +128,7 @@ function addToOpenCards(clickedCard) {
     }
 
 }
-
+//*******************if the cards match, add a class match to them to keep them open*****///
 function foundMatch(array) {
     setTimeout(function () {
         array[0].classList.add('match');
@@ -134,7 +138,7 @@ function foundMatch(array) {
     }, 500);
     checkStatus();
 }
-
+//*****************if not matched, remove fro the array**********************//
 function notMatched(array) {
     array[0].classList.add('notMatched');
     array[1].classList.add('notMatched');
@@ -152,13 +156,13 @@ function notMatched(array) {
     }, 500);
 
 }
-
+//***************calculate the number of moves of the player and display them************//
 function calcMoves() {
     moves++;
     movesSpan.innerText = moves;
     updateStars();
 }
-
+//***************update the number of stars with the player according to the moves************//
 function updateStars() {
     if (moves > 15 && moves < 25) {
         starsList[4].setAttribute('class', 'fa fa-star-o');
@@ -177,7 +181,7 @@ function updateStars() {
         stars = 1;
     }
 }
-
+//*********************Display timer of the game*******************//
 function timer() {
     var countdown = 900000;
     var timerId = setInterval(function () {
@@ -196,6 +200,7 @@ function timer() {
         }
 
     }, 1000);
+
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976

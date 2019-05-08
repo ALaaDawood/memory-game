@@ -13,6 +13,22 @@ The object of the game is to turn over pairs of matching cards.
 * Remember what was on each card and where it was.
 * The game is over when all the cards have been matched.
 
+## Screenshots
+
+![ScreenShot1](img/ss1.jpg)
+![ScreenShot1](img/ss2.jpg)
+![ScreenShot1](img/ss3.jpg)
+![ScreenShot1](img/ss4.jpg)
+![ScreenShot1](img/ss5.jpg)
+
+## Technical Notes
+
+-Use Events, Events handler to control the click of the cards.
+
+-Use browser Local storage to track the player's highest score.
+
+-Use SetInterval to track the player's timer and calculate the time taken to win.
+
 ## Note
 
 this project is a part of the udacity Front-End web development Nanodegree program.

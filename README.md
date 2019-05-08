@@ -16,7 +16,7 @@ The object of the game is to turn over pairs of matching cards.
 ## Screenshots
 
 ![ScreenShot1](img/ss1.jpg)
-![ScreenShot1](img/ss2.jpg)
+![ScreenShot1](img/ss2.png)
 ![ScreenShot1](img/ss3.jpg)
 ![ScreenShot1](img/ss4.jpg)
 ![ScreenShot1](img/ss5.jpg)

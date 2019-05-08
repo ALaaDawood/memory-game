@@ -1,5 +1,8 @@
 /*
- * Create a list that holds all of your cards
+ * Create a list that holds all of the cards
+ */
+/**
+ * select all needed element
  */
 const cardsList = document.querySelector('.deck');
 const cards = document.querySelectorAll('.card');
@@ -15,7 +18,7 @@ const container = document.querySelector('.container');
 const body = document.querySelector('body');
 timerspan = document.querySelector('.timer');
 
-
+/*restart button reloads the page to shuffle the cards and start the game again*/
 restartBtn.addEventListener('click', function () {
     window.location.reload();
 });
@@ -30,10 +33,10 @@ for (let i = 0; i < cardsArray.length; i++) {
     timer();
 }
 
-//************ adding functionality when the card is clicked ****************//
+//************ add functionality when the card is clicked ****************//
 cardsList.addEventListener('click', cardClicked);
 
-//**********function to take the clicked card and adds class to it*************//
+//**********function to take the clicked card and adds class open to it*************//
 function cardClicked(e) {
 
     const clickedCard = e.target;
@@ -76,12 +79,19 @@ function displayScore() {
 
     const congrats = document.createElement('h1');
     congrats.innerText = "Congratulations! YOU Won!";
-
+    /**
+     * calculate the players moves and display them with the stars
+     */
     const playerStats = document.createElement('p');
     playerStats.innerText = "With " + moves + " Moves and " + stars + " Stars ";
-
+    /******calculate the time taken to finish the game**********/
     currentTime = timerspan.innerText.split(':');
-    console.log(currentTime);
+    minutes = 15 - currentTime[0];
+    seconds = 00 - currentTime[1];
+    console.log(minutes);
+
+    const playerTime = document.createElement('p');
+    playerTime.innerText = "Time taken: " + minutes + ":" + (60 - Math.abs(seconds)) + " minutes";
 
     const againBtn = document.createElement('button');
     againBtn.innerText = "Play Again";
@@ -96,11 +106,12 @@ function displayScore() {
     scoreContainer.appendChild(checkImg);
     scoreContainer.appendChild(congrats);
     scoreContainer.appendChild(playerStats);
+    scoreContainer.appendChild(playerTime);
     scoreContainer.appendChild(leaderBoard);
     scoreContainer.appendChild(againBtn);
 }
 
-//*********************save the player's score in local storage to compare high scores*********//
+//****************save the player's score in local storage to compare high scores every time the player wins*********//
 function saveScore() {
     if (localStorage.getItem('highScore') != null) {
         prevScore = localStorage.getItem('highScore');
